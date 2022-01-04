@@ -6,14 +6,14 @@ public class ConsoleProgress implements Runnable {
     public void run() {
         int count = 0;
         char[] symbols = {'\\', '|', '/', '-'};
-        try {
-            while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
+            try {
                 System.out.print("\rLoading... " + symbols[count++]);
                 Thread.sleep(300);
                 count = count % 4;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
         }
     }
 
