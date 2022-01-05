@@ -20,14 +20,15 @@ public class Wget implements Runnable {
              FileOutputStream fileOutputStream = new FileOutputStream("newfile.xml")) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
+            long start = System.currentTimeMillis();
             while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                 try {
-                    long start = System.currentTimeMillis();
-                    fileOutputStream.write(dataBuffer, 0, bytesRead);
                     long pause = System.currentTimeMillis() - start;
-                    if (speed > pause) {
+                    fileOutputStream.write(dataBuffer, 0, bytesRead);
+                    if ((long) speed > pause) {
                         Thread.sleep(speed);
                     }
+                    start = System.currentTimeMillis();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
