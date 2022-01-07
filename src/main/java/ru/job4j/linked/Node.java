@@ -1,8 +1,8 @@
 package ru.job4j.linked;
 
 public final class Node<T> {
-    final private Node<T> next;
-    final private T value;
+    private final Node<T> next;
+    private final T value;
 
     public Node(Node<T> next, T value) {
         this.next = next;
@@ -10,12 +10,10 @@ public final class Node<T> {
     }
 
     public Node<T> getNext() {
-        Node<T> copyOfNode = new Node<>(next, value);
-        return copyOfNode.next;
+        return new Node<>(next, value).next;
     }
 
     public T getValue() {
-        Node<T> copyOfNode = new Node<>(next, value);
-        return copyOfNode.value;
+        return new Node<>(next, value).value;
     }
 }
