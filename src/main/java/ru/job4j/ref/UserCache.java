@@ -21,6 +21,8 @@ public class UserCache {
     }
 
     public List<User> findAll() {
-        return List.copyOf(new ArrayList<>(users.values()));
+        List<User> listOfUsers = new ArrayList<>();
+        users.values().forEach((user) -> listOfUsers.add(User.of(user.getName())));
+        return listOfUsers;
     }
 }
