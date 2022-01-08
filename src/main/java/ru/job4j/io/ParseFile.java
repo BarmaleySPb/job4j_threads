@@ -11,13 +11,13 @@ public final class ParseFile {
         this.file = file;
     }
 
-    private String content(Predicate<Character> filter) {
+    private String content(Predicate<Integer> filter) {
         StringBuilder output = new StringBuilder();
         try (InputStream inputStream =
                      new BufferedInputStream(new FileInputStream(file))) {
             int data;
             while ((data = inputStream.read()) > 0) {
-                if (filter.test((char) data)) {
+                if (filter.test(data)) {
                     output.append((char) data);
                 }
             }
