@@ -33,4 +33,8 @@ public class UserStorage {
         update(new User(recipient.getId(), recipient.getAmount() + amount));
         return true;
     }
+
+    public synchronized User get(int id) {
+        return userStorage.get(id);
+    }
 }
