@@ -2,6 +2,7 @@ package ru.job4j.userstorage;
 
 import java.util.Objects;
 
+
 public final class User {
     private final int id;
     private final int amount;
@@ -12,13 +13,11 @@ public final class User {
     }
 
     public int getId() {
-        User copyOfUser = new User(id, amount);
-        return copyOfUser.id;
+        return id;
     }
 
     public int getAmount() {
-        User copyOfUser = new User(id, amount);
-        return copyOfUser.amount;
+        return amount;
     }
 
     @Override
