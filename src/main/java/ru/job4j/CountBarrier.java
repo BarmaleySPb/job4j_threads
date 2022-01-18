@@ -1,5 +1,6 @@
 package ru.job4j;
 
+
 public class CountBarrier {
     private final Object monitor = this;
 
@@ -13,8 +14,8 @@ public class CountBarrier {
 
     public void count() {
         synchronized (monitor) {
-            monitor.notify();
             count++;
+            monitor.notify();
         }
     }
 
