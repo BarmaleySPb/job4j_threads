@@ -31,16 +31,14 @@ public class SingleLockListTest {
     public void whenFetchAllThenGetIt() throws InterruptedException {
         final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
         final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(5);
-        Thread producer = new Thread(() -> {
-            IntStream.range(0, 5).forEach(i -> {
-                try {
-                    queue.offer(i);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    Thread.currentThread().interrupt();
-                }
-            });
-        });
+        Thread producer = new Thread(() -> IntStream.range(0, 5).forEach(i -> {
+            try {
+                queue.offer(i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Thread.currentThread().interrupt();
+            }
+        }));
         producer.start();
         Thread consumer = new Thread(
                 () -> {
