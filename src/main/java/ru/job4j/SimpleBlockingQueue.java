@@ -10,27 +10,23 @@ import java.util.Queue;
 public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private Queue<T> queue = new LinkedList<>();
-    private static final int MAX_ELEMENT = 10;
+    final int sizeOfQueue;
 
-    public synchronized void offer(T value) {
-        while (queue.size() == MAX_ELEMENT) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+    public SimpleBlockingQueue(int sizeOfQueue) {
+        this.sizeOfQueue = sizeOfQueue;
+    }
+
+    public synchronized void offer(T value) throws InterruptedException {
+        while (queue.size() == sizeOfQueue) {
+            wait();
         }
         queue.add(value);
         notifyAll();
     }
 
-    public synchronized T poll() {
+    public synchronized T poll() throws InterruptedException {
         while (queue.isEmpty()) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            wait();
         }
         notifyAll();
         return queue.poll();
