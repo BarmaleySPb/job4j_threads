@@ -17,7 +17,7 @@ public class Cache {
             if (cachedBaseVersion != model.getVersion()) {
                 throw new OptimisticException("Versions are not equal");
             }
-            Base outputBase = new Base(value.getId(), ++cachedBaseVersion);
+            Base outputBase = new Base(value.getId(), cachedBaseVersion + 1);
             outputBase.setName(model.getName());
             return outputBase;
         }) != null;
