@@ -35,4 +35,14 @@ public class ParallelSearchTest {
         assertEquals(ParallelSearch.search(array, "fj1j"), -1);
     }
 
+    @Test
+    public void when() {
+        Integer[] array = {1, 2, 3, 4, 5, 7, 9, 14, 22, 32, 47, 69, 87, 65, 46, 13,
+                21, 66, 48, 59, 98, 99, 55, 87, 42, 31, 56, 49, 79, 86, 54, 53, 41,
+                65, 45, 64, 68, 79, 23, 12};
+        assertEquals(ParallelSearch.search(array, 86), 29);
+        assertEquals(ParallelSearch.search(array, 65), 33);
+        assertEquals(ParallelSearch.search(array, 68), 36);
+    }
+
 }
